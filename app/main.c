@@ -27,7 +27,7 @@ char* decode_bencode(const char* bencoded_value) {
     }
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char** argv) {
 	// Disable output buffering
 	setbuf(stdout, NULL);
  	setbuf(stderr, NULL);
@@ -40,14 +40,10 @@ int main(int argc, char* argv[]) {
     const char* command = argv[1];
 
     if (strcmp(command, "decode") == 0) {
-    	// You can use print statements as follows for debugging, they'll be visible when running tests.
-        printf("Logs from your program will appear here!\n");
-            
-        // Uncomment this block to pass the first stage
-        // const char* encoded_str = argv[2];
-        // char* decoded_str = decode_bencode(encoded_str);
-        // printf("\"%s\"\n", decoded_str);
-        // free(decoded_str);
+        const char* encoded_str = argv[2];
+        char* decoded_str = decode_bencode(encoded_str);
+        printf("\"%s\"\n", decoded_str);
+        free(decoded_str);
     } else {
         fprintf(stderr, "Unknown command: %s\n", command);
         return 1;
